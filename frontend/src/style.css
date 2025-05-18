@@ -1,0 +1,58 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+}
+.app {
+  max-width: 400px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 2em;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.auth-form,
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 1em;
+}
+input,
+button {
+  padding: 0.5em;
+  font-size: 1em;
+}
+button {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button.logout-btn {
+  float: right;
+  background: #e53935;
+}
+button:hover {
+  background: #1565c0;
+}
+ul.task-list {
+  list-style: none;
+  padding: 0;
+}
+ul.task-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5em 0;
+  padding: 0.5em;
+  border-bottom: 1px solid #eee;
+}
+ul.task-list li.completed span {
+  text-decoration: line-through;
+  color: #888;
+}
+.error {
+  color: red;
+  margin-top: 1em;
+}
