@@ -11,7 +11,6 @@ import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import "./style.css";
 
-// Helper to check if JWT exists
 const isAuthenticated = () => !!localStorage.getItem("token");
 
 function App() {
@@ -19,7 +18,6 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState("");
 
-  // Fetch tasks after login
   useEffect(() => {
     if (user) {
       API.get("/tasks")
@@ -28,10 +26,9 @@ function App() {
     }
   }, [user]);
 
-  // Register handler
   const handleRegister = async (email, password) => {
     try {
-      const res = await API.post("/auth/register", { email, password });
+      const res = await API.post("/users/register", { email, password });
       localStorage.setItem("token", res.data.token);
       setUser(true);
       setError("");
@@ -40,10 +37,9 @@ function App() {
     }
   };
 
-  // Login handler
   const handleLogin = async (email, password) => {
     try {
-      const res = await API.post("/auth/login", { email, password });
+      const res = await API.post("/users/login", { email, password });
       localStorage.setItem("token", res.data.token);
       setUser(true);
       setError("");
@@ -52,14 +48,12 @@ function App() {
     }
   };
 
-  // Logout handler
   const handleLogout = () => {
     localStorage.removeItem("token");
     setUser(false);
     setTasks([]);
   };
 
-  // Add task
   const addTask = async (name) => {
     try {
       const res = await API.post("/tasks", { name });
@@ -70,7 +64,6 @@ function App() {
     }
   };
 
-  // Toggle complete
   const toggleTask = async (id, completed) => {
     try {
       const res = await API.put(`/tasks/${id}`, { completed });
@@ -81,7 +74,6 @@ function App() {
     }
   };
 
-  // Delete task
   const deleteTask = async (id) => {
     try {
       await API.delete(`/tasks/${id}`);
